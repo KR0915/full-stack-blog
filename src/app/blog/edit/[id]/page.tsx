@@ -36,7 +36,7 @@ const deleteBlog=async(id:number)=>{
 };
 
 
-const EditPost = ({params}:{params:{id:number}}) => {
+const EditPost =({params}:{params:{id:number}}) => {
     const router=useRouter();
     const titleRef=useRef<HTMLInputElement |null>(null);//useRefはそのプロパティの属性を取得できる ここはtitleを入力フォームから入手するための関数
     const descriptionRef=useRef<HTMLTextAreaElement |null>(null)
@@ -66,16 +66,6 @@ const EditPost = ({params}:{params:{id:number}}) => {
       router.refresh();
     };
 
-    useEffect(()=>{
-        getBlogByID(params.id).then((data)=>{
-            if(titleRef.current&&descriptionRef.current){
-                titleRef.current.value=data.title;
-                descriptionRef.current.value=data.description;
-            }
-        }).catch(err=>{
-            toast.error("エラーが発生しました",{id:"1"})
-        })
-    },[]);
 
   return (
     <>
